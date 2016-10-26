@@ -13,7 +13,11 @@ class TweetReader(source: String) {
     this.maxRandomToSearch = newMax
   }
 
-  def readATweet: Tweet = {
+  def readFirstTweet: Tweet = {
+    new Tweet(Source.fromFile(source).getLines().next())
+  }
+
+  def readRandomTweet: Tweet = {
     val reader: BufferedSource = Source.fromFile(source)
     val tweetLine: Int  = new Random().nextInt(maxRandomToSearch)
     val it: Iterator[String] = reader.getLines()
